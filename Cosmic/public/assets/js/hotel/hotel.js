@@ -109,7 +109,7 @@ function HotelLoadingInterface()
               "account_id": User.id,
               "ads.domain": "",
               "processlog.enabled": "1",
-              "client.starting": "Frank brengt je koffers naar je hotelkamer!",
+              "client.starting": "Welcome in, enjoy your stay!",
               "flash.client.url": base + prod,
               "flash.client.origin": "popup",
             },
