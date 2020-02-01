@@ -448,7 +448,7 @@ $GLOBALS['language'] = array (
         ),
         'settings_namechange' => array (
             'title'           => 'Change ' . Config::site['shortname'] . 'name',
-            'help_1'          => 'Do you want to change your ' . Config::site['shortname'] . 'name? Which can! This costs',
+            'help_1'          => 'Do you want to change your ' . Config::site['shortname'] . 'name? You can! This costs',
             'help_2'          => 'and will be debited immediately after your request. Once your name has been changed we cannot reverse it! So make sure you think carefully about your decision!',
             'fill_username'   =>  Config::site['shortname'] . 'name...',
             'request'         => 'Request'
@@ -518,7 +518,7 @@ $GLOBALS['language'] = array (
             'content_2'           => 'Do not hesitate to contact customer service via the',
             'help_tool'           =>  Config::site['shortname'] . ' Help Tool',
             'title'               => 'My Purchase history',
-            'desc'                => 'You see here all the purchases you have made'
+            'desc'                => 'Here is all of your purchase history within'
         ),
         'shop_offers' => array (
             'back'              => 'Back',
@@ -547,7 +547,7 @@ $GLOBALS['language'] = array (
         ),
         'games_ranking' => array(
             'title'             => 'Highscores',
-            'desc'              => 'On this you find all the high scores of our players!'
+            'desc'              => 'Here are all the highscores within ' . Config::site['shortname'] . '. '
         )
     ),
     'core' => array (
@@ -690,9 +690,9 @@ $GLOBALS['language'] = array (
     ),
     'help' => array (
         'ticket_created'            => 'Your Help Ticket has been created. View your Help Tickets to view the help request.',
-        'ticket_received'           => 'An ' . Config::site['shortname'] . ' Staff has responded to your Help Tool ticket. Visit the Help Tool to view the response.',
+        'ticket_received'           => 'A member of the ' . Config::site['shortname'] . ' Staff team has responded to your Help Tool ticket. Visit the Help Tool to view the response.',
         'already_open'              => 'You still have an outstanding ticket! When this has been treated you can create a ticket again.',
-        'no_answer_yet'             => 'You can only respond once an ' . Config::site['shortname'] . ' Staff has answered your ticket.',
+        'no_answer_yet'             => 'You can only respond once a ' . Config::site['shortname'] . ' Staff member has answered your ticket.',
     ),
     'forum' => array (
         'is_sticky'                 => 'Sticky updated!',
