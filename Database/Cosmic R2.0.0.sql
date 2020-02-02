@@ -481,7 +481,7 @@ CREATE TABLE `website_remembered_logins`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token_hash` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
-  `expires_at` int(11) NOT NULL DEFAULT 0,
+  `expires_at` varchar(24) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
@@ -595,7 +595,7 @@ CREATE TABLE `website_user_logs_email`  (
 -- ----------------------------
 ALTER TABLE catalog_items ADD rate enum('up','down','none') DEFAULT 'none';
 ALTER TABLE users ADD secret_key int(11) NULL DEFAULT NULL;
-ALTER TABLE users ADD pincode int(11) NULL DEFAULT NULL;
+ALTER TABLE users ADD pincode varchar(11) NULL DEFAULT NULL;
 ALTER TABLE users MODIFY mail VARCHAR(500);
 
 SET FOREIGN_KEY_CHECKS = 1;
