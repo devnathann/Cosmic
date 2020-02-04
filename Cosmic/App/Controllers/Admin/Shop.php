@@ -66,7 +66,7 @@ class Shop
     {
         $offers = Admin::getOffers();
         foreach($offers as $offer) {
-            $offer->currency = Core::getCurrencyByType($offer->currency_type)->currency;
+            $offer->currency = Core::getCurrencyByType($offer->currency)->currency;
         }
 
         Json::filter($offers, 'desc', 'id');

@@ -499,6 +499,7 @@ CREATE TABLE `website_settings`  (
 -- ----------------------------
 INSERT INTO `website_settings` VALUES ('krews_api_useragent', NULL);
 INSERT INTO `website_settings` VALUES ('krews_api_advanced_stats', '1');
+INSERT INTO `website_settings` VALUES ('krews_api_hotel_slug', NULL);
 INSERT INTO `website_settings` VALUES ('rcon_api_host', '127.0.0.1');
 INSERT INTO `website_settings` VALUES ('rcon_api_port', '3001');
 INSERT INTO `website_settings` VALUES ('recaptcha_publickey', '');
@@ -538,7 +539,7 @@ INSERT INTO `website_settings_currencys` VALUES ('belcredits', 103, 1000);
 DROP TABLE IF EXISTS `website_shop_offers`;
 CREATE TABLE `website_shop_offers`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `currency` enum('belcredits','diamonds','credits','vip') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'belcredits',
+  `currency` int(3) NOT NULL,
   `amount` int(11) NOT NULL DEFAULT 20,
   `price` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '1.50',
   `image` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
