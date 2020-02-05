@@ -17,7 +17,7 @@ function WebHotelManagerInterface()
         this.hotel_container.find(".client-buttons .client-radio").click(this.radio(this));
 
         setInterval(function() {
-            $("body").find(".client-buttons .client-count #count").load("/api/player/count");
+            $("body").find(".client-buttons .client-count #count").load("/api/online");
         }, 120000);
     };
 
@@ -31,7 +31,7 @@ function WebHotelManagerInterface()
 
     this.refresh_count = function ()
     {
-        $("body").find(".client-buttons .client-count #count").load("/api/player/count");
+        $("body").find(".client-buttons .client-count #count").load("/api/online");
     };
 
     this.open_hotel = function (arguments)
@@ -39,7 +39,7 @@ function WebHotelManagerInterface()
         var actions = {};
         var container = this.hotel_container;
         var container_actions = this.hotel_actions;
-
+        
         if (arguments !== undefined) {
             parse_str(arguments, actions);
         }
@@ -58,12 +58,13 @@ function WebHotelManagerInterface()
                     body.addClass("hotel-visible");
                     body.find(".client-buttons").hide();
                     
-                    History.pushState(null, Site.name + '- Krews Vote', Site.url + '/hotel/krews/vote');
+                    History.pushState(null, Site.name + '- Krews Vote', 'hotel');
                 } 
                 else 
                 {
                   if (container.find(".client-frame").length === 0)
-                      container.prepend('<iframe class="client-frame" src="' + Site.url + '/client?' + arguments + '"></iframe>');
+              
+                      container.prepend('<iframe class="client-frame" src="/client"></iframe>');
 
                       body.addClass("hotel-visible");
 
@@ -74,22 +75,9 @@ function WebHotelManagerInterface()
 
                       $(".fa-play").hide();
                       $(".fa-pause").show();
-
-                      container_actions(actions);
                   }
             });
         }
-    };
-
-    /*
-    * Hotel Actions
-    * */
-    this.hotel_actions = function () {
-        this.hotel_actions = function (actions) {
-            if (actions.hasOwnProperty("room")) {
-                Web.ajax_manager.post("/ajax/room/go", {roomId: actions["room"]});
-            }
-        };
     };
 
     /*

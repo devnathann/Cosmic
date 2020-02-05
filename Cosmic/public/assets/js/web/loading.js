@@ -88,7 +88,7 @@ function SiteLoadingInterface()
             console.log("Oops, file \"" + file_name + "\" not found.");
             self.write_bodytext("Oops, something went wrong. <a href=\"javascript:window.location.reload();\">Reload the page</a>.");
         };
-        script.src = Site.url + "/assets/js/web/" + file_name + ".js?" + this.cache_id;
+        script.src = "/assets/js/web/" + file_name + ".js?" + this.cache_id;
     };
 
     this.write_bodytext = function (text)
