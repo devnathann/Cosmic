@@ -26,11 +26,11 @@ class Client
     {
         $this->data = new stdClass();
 
-        /*
+    
         $reader = new Reader(__DIR__. Config::vpnLocation);
 
         try {
-            $record = $reader->asn(Core::getIpAddress());
+            $record = $reader->asn(request()->getIp());
         } catch (AddressNotFoundException $e) {
         } catch (InvalidDatabaseException $e) {
 
@@ -42,8 +42,7 @@ class Client
             View::renderTemplate('Client/vpn.html', ['asn' => $asn->asn, 'type' => 'vpn']);
             exit;
         }
-        
-        */
+   
 
         $OS = substr($_SERVER['HTTP_USER_AGENT'], -2);
         if (strpos($_SERVER['HTTP_USER_AGENT'], "Puffin") !== false && ($OS == "WD" || $OS == "LD" || $OS == "MD")) {
@@ -51,20 +50,11 @@ class Client
             exit;
         }
 
+        //$this->data->shuttle_token = bin2hex(openssl_random_pseudo_bytes(48));
         $this->data->auth_ticket = Token::authTicket(request()->player->id);
         $this->data->unique_id = sha1(request()->player->id . '-' . time());
 
-        Player::update(request()->player->id, ['auth_ticket' => $this->data->auth_ticket]);
-
-        if(isset($_GET['room'])) {
-            if(is_numeric($_GET['room'])) {
-                $room = Room::getById($_GET['room']);
-
-                if($room != null) {
-                    $this->data->room = $room->id;
-                }
-            }
-        }
+        Player::update(request()->player->id, ["auth_ticket" => $this->data->auth_ticket]);
 
         View::renderTemplate('Client/client.html', [
             'title' => Locale::get('core/title/hotel'),
@@ -74,7 +64,7 @@ class Client
 
     public function hotel()
     {
-        View::renderTemplate('Home/home.html', [
+        View::renderTemplate('base.html', [
             'title' => Locale::get('core/title/hotel'),
             'page'  => 'home'
         ]);

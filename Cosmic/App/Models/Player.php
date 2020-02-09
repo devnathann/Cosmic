@@ -84,8 +84,8 @@ class Player
             'account_day_of_birth' => strtotime($data->birthdate_day . '-' . $data->birthdate_month . '-' . $data->birthdate_year),
             'gender' => $data->gender == 'male' ? 'M' : 'F',
             'last_login' => time(),
-            'ip_register' => Core::getIpAddress(),
-            'ip_current' => Core::getIpAddress()
+            'ip_register' => request()->getIp(),
+            'ip_current' => request()->getIp()
         );
 
         $user_id = QueryBuilder::table('users')->setFetchMode(PDO::FETCH_CLASS, get_called_class())->insert($data);
@@ -177,12 +177,11 @@ class Player
 
     public static function getCurrencys($user_id)
     {
-        $data = array();
-        foreach(\App\Models\Core::getCurrencys() as $row) {
-            $data[$row->type] = self::getUserCurrencys($user_id, $row->type) ?? new \stdClass();
-            $data[$row->type]->currency = $row->currency;
+        $currencies = \App\Models\Core::getCurrencys();
+        foreach($currencies as $row) {
+            $row->amount = self::getUserCurrencys($user_id, $row->type)->amount ?? 0;
         }
-        return $data;
+        return $currencies;
     }
 
     public static function hasPermission($permission)
